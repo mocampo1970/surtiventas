@@ -1,0 +1,26 @@
+<!-- Solo se muestra cuando estamos logueados, este pone el sidebar, dashboard -->
+<div class="container-fluid">
+  <div class="row">
+    <!-- Sidebar -->
+    <div class="col-sm-2 col-12 p-0">
+      <!-- Menu En este componente app-sidebar.html -->
+      <app-sidebar></app-sidebar>
+    </div>
+    <!-- Dashboard aqui en este va a ir el <router-outlet></router-outlet> para que direccione a
+         cada componente segun se presione en el sidebar -->
+    <div class="col-sm-10 col-12">
+      <app-dashboard></app-dashboard>
+    </div>
+  </div>
+</div>
+
+<!-- Login, solo se mostraria cuando no estamos logueados o sea cuando ingresemos la primera vez 
+     o nos desconectemos -->
+<div class="container h-100" >
+  <div class="row">
+    <div class="col-12">
+      <!--<app-login></app-login>-->
+      <h1 class="text-center">login mao</h1>   
+    </div>
+  </div>
+</div>

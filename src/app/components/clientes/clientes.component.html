@@ -1,0 +1,38 @@
+<p>clientes works!</p>
+<div class="row">
+    <div class="col-12">
+        <h1>Consulta de Clientes</h1>
+    </div>
+
+    <!-- container agrupar en forma de cuadro -->
+    <div class="container">
+        <!-- Me abre la ventana addpais, recordar que el nombre es como se llama
+            el selector de AddpaisComponent o en el app.routing -->
+        <button class="btn btn-info" type="button" [routerLink]="['/add-clientes']">{{'label.new.client' | translate}}</button>    
+
+        <p>
+            <!-- Buscar clientes: <input type="search" name="buscarciudad" [placeholder]="'label.3.characters' | translate"
+            [(ngModel)]="filterCliente">
+            <input class="img-fluid" type="image" src="assets/img/icons8search.png" /> 
+            -->
+        </p>
+
+        <table class="table table-success table-striped">
+            <!-- Titulos -->
+            <thead>
+               <!-- este clientess es el model que trae los datos del maestro y que se declara en el 
+                    clientes.ts, appSort es una directiva que esta en directives/sort.directive -->                
+                <tr>
+                    <th scope="col" [appSort]="clientes" data-order="desc" data-name="id">ID
+                        <i class="fa fa-arrow-circle-down"></i>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+
+            </tbody>
+        </table>    
+
+    </div>    
+</div>
+

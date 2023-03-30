@@ -1,0 +1,78 @@
+<div class="row">
+    <div class="col-12">
+        <h1 align="left">{{'label.list.cities' | translate}}</h1>
+    </div>
+
+    <!-- container agrupar en forma de cuadro -->
+    <div class="container">
+        <!-- Me abre la ventana addpais, recordar que el nombre es como se llama
+            el selector de AddpaisComponent o en el app.routing -->
+        <button class="btn btn-info" type="button" [routerLink]="['/add-ciudades']">{{'label.new.city' | translate}}</button>    
+
+        <p>
+            Buscar ciudades: <input type="search" name="buscarciudad" [placeholder]="'label.3.characters' | translate"
+            [(ngModel)]="filterCiudad">
+            <input class="img-fluid" type="image" src="assets/img/icons8search.png" /> 
+        </p>   
+
+        <table class="table table-success table-striped">
+            <!-- Titulos -->
+            <thead>
+                <tr>
+                    <!-- este ciudades es el model que trae los datos del maestro y que se declara en el 
+                         ciudades.ts -->
+                    <th scope="col" [appSort]="ciudades" data-order="desc" data-name="id">ID
+                        <i class="fa fa-arrow-circle-down"></i>						
+                        <!--<i class="fa-thin fa-arrow-down-arrow-up"></i>-->
+                    </th>
+                    <th scope="col" [appSort]="ciudades" data-order="desc" data-name="id">Nombre
+                        <i class="fa fa-arrow-circle-down"></i>						
+                        <!--<i class="fa-thin fa-arrow-down-arrow-up"></i>-->
+                    </th>                    
+                    <th scope="col" [appSort]="ciudades" data-order="desc" data-name="id">Pais
+                        <i class="fa fa-arrow-circle-down"></i>						
+                        <!--<i class="fa-thin fa-arrow-down-arrow-up"></i>-->
+                    </th>
+                    <th scope="col">Editar</th>
+                    <th scope="col">Eliminar</th>
+                </tr>
+            </thead>
+            <!-- Detalle -->
+            <tbody>
+                <tr *ngFor="let ciudad of ciudades | paginate: { itemsPerPage: itemsPage, currentPage: page} | filterciudad:filterCiudad">
+                    <td>{{ciudad.id}}</td>
+                    <td>{{ciudad.nombre}}</td>
+                    <td>{{ciudad.pais.nombre}}</td>
+
+                    <td> 
+                        <button type="button" name="button" class="btn btn-primary" 
+                            [routerLink]="['/add-ciudades/', ciudad.id]" (click)="editarCiudad(ciudad)">Editar
+                        </button>
+                    </td>   
+                        
+                    <!-- Este Td lo ingresa bien en la tabla -->    
+                    <td>
+                        <!-- En el borrar se le pasa el objeto estudiante(model) que esta definido en este component.ts
+                            por eso arriba se utiliza -->
+                        <button type="button" name="buttoneliminar" class="btn btn-danger" (click)="delete(ciudad)">
+                            Eliminar
+                        </button> 
+                    </td>                    
+                </tr>
+            </tbody>
+        </table>
+
+        <!-- Paginación si es menor itemsPage al largo de categorias lo muestra
+            sino no -->
+        <div class="row" *ngIf="itemsPage < ciudades.length">
+            <div class="col-12 text-center">
+                <pagination-controls (pageChange)="page = $event" [previousLabel]="'label.previous' | translate"
+                    [nextLabel]="'label.next' | translate">
+                </pagination-controls>
+            </div>
+        </div>
+
+
+    </div>    
+
+</div>

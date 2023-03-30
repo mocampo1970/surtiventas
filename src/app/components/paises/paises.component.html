@@ -1,0 +1,71 @@
+<div class="row">
+    <div class="col-12 text-center">
+      <h1 align="left">{{'label.list.countries' | translate}}</h1>
+    </div>
+
+    <!-- container agrupar en forma de cuadro -->
+    <div class="container">
+        <!-- Me abre la ventana addpais, recordar que el nombre es como se llama
+            el selector de AddpaisComponent o en el app.routing -->
+        <button class="btn btn-primary" type="button" [routerLink]="['/add-paises']">{{'label.new.country' | translate}}</button>
+
+        <p>
+            Buscar paises: <input type="search" name="buscarpais" [placeholder]="'label.3.characters' | translate"
+            [(ngModel)]="filterPais">
+            <input class="img-fluid" type="image" src="assets/img/icons8search.png" /> 
+        </p>        
+      
+            
+        <table class="table table-success table-striped">
+            <!-- Titulos -->
+            <thead>
+                <tr>
+                    <th scope="col" [appSort]="paises" data-order="desc" data-name="id">Id
+                        <i class="fa fa-arrow-circle-down"></i>
+                    </th>
+                    <th scope="col" [appSort]="paises" data-order="desc" data-name="nombre">Nombre
+                        <i class="fa fa-arrow-circle-down"></i>
+                    </th>
+                    <th scope="col">Editar</th>
+                    <th scope="col">Eliminar</th>                           
+                </tr>
+            </thead>
+            <!-- Detalle, no me traia el nombre porque en el backend tenia nombre en el 
+                metodo setNombres, aqui en el model lo tengo nombre y traia el id pero no
+                el nombre. cambie en el backend ese metodo setNombres por setNombre 
+                y de una, para el campo pais.nombre -->
+            <tbody>
+                <tr *ngFor="let pais of paises | paginate: { itemsPerPage: itemsPage, currentPage: page} | filterpais: filterPais">
+                    <th>{{pais.id}}</th>
+                    <td>{{pais.nombre}}</td>
+
+                    <td> 
+                        <button type="button" name="button" class="btn btn-primary" 
+                            [routerLink]="['/add-paises/', pais.id]">Editar
+                        </button>
+                    </td>   
+                        
+                    <!-- Este Td lo ingresa bien en la tabla -->    
+                    <td>
+                        <!-- En el borrar se le pasa el objeto estudiante(model) que esta definido en este component.ts
+                            por eso arriba se utiliza -->
+                        <button type="button" name="buttoneliminar" class="btn btn-danger" (click)="delete(pais)">
+                            Eliminar
+                        </button> 
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <!-- Paginación si es menor itemsPage al largo de categorias lo muestra
+            sino no -->
+        <div class="row" *ngIf="itemsPage < paises.length">
+            <div class="col-12 text-center">
+                <pagination-controls (pageChange)="page = $event" [previousLabel]="'label.previous' | translate"
+                    [nextLabel]="'label.next' | translate">
+                </pagination-controls>
+            </div>
+        </div>
+
+    </div>
+</div>  

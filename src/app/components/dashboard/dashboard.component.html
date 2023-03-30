@@ -1,0 +1,11 @@
+<!-- este es como la VENTANA BASE de la derecha donde dependiendo cual se selecciona la abre, por ejm
+     si se presiona el icono pedidos abre pedidos, si se presiona el icono cliente abre cliente.
+     Para ese se le coloca el router-outlet y esta es llamada desde el 
+     app.component.html junto al sidebar que es la ventana izquierda -->
+<div class="row" id="dashboard">
+    <div class="col-12">
+        <!-- Se coloca este para que cuando presiona el resume muestre el pedidos en vez del
+             dashboard, con el clientes lo mismo, desde donde se llaman del sidebar -->        
+        <router-outlet></router-outlet>
+    </div>
+</div>

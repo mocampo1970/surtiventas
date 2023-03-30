@@ -1,0 +1,13 @@
+{
+    "label.name.app": "Surtiventas s.a.s",
+    "label.customer" : "Clientes",
+    "label.orders": "pedidos",
+    "label.logout": "Logout",
+    "label.countries": "Paises",
+    "label.cities": "Ciudades",
+    "label.products": "Productos",
+    "label.product maintenance": "Mantenimiento de productos",
+    "label.previous": "Anterior",
+    "label.next": "Siguiente",
+    "label.new.client": "Nuevo cliente"  
+}

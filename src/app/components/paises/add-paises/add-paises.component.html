@@ -1,0 +1,36 @@
+<div class="container">
+	<form [formGroup]="formularioRegistro" (ngSubmit)="onSubmit()" >
+
+		<h3>{{"label.new.country" | translate}} - Formulario reactivo</h3>
+
+		<!-- Codigo -->
+		<!-- Se define la clase error para utilizarla en el css. 
+		     como necesitamos saber si el codigo esta valid o invalid no lo podemos hacer directamente 
+			 al nombre sino que en el ts debemos poder accesar mediante el metodo get del 
+			 campo en este caso codigo, el class="form-control" los agrupa 
+			 codigo.dirty || codigo.touched es si ya ingreso algo en el campo o si ya lo toco.
+			 el ngClass es para que el input o sea donde se digita el código haga lo mismo pero en el css
+			 La directiva ngClass le permite establecer dinámicamente clases de CSS en un elemento HTML 
+			 mediante el enlace de datos de una expresión -->
+
+		<!-- Mirar si este campo va, no hay necesidad ya permite ADD y editar -->	 
+		<!--<label>Id</label>
+		<input class="form-control" type="text" formControlName="id" readonly>-->
+
+		<!-- Nombre -->
+		<label>Nombre</label>
+		<input class="form-control" [ngClass]="{'input-error':nombre.invalid && (nombre.dirty || nombre.touched)}"
+		type="text" formControlName="nombre" placeholder="Nombre" required>
+		<div *ngIf="nombre.invalid && (nombre.dirty || nombre.touched)" class="error">
+			<span *ngIf="nombre.errors.required">El nombre es obligatorio</span>
+			<span *ngIf="nombre.errors.minlength">El nombre mínimo son 4 caracteres</span>
+			<span *ngIf="nombre.errors.maxlength">El tamaño máximo son 20 caracteres</span>							
+		</div>
+
+		<div class="text-center">
+			<button [disabled]="!formularioRegistro.valid" class="btn btn-primary mr-1" >Guardar</button>
+			<button class="btn btn-secondary" type="reset">Cancelar</button>
+		</div>				
+
+	</form>
+</div>

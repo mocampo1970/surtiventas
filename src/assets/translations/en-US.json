@@ -1,0 +1,13 @@
+{
+    "label.name.app": "Surtiventas ",
+    "label.customer" : "Customer",
+    "label.orders": "Orders",
+    "label.logout": "Logout",    
+    "label.countries": "countries",
+    "label.cities": "cities",
+    "label.products": "products",
+    "label.product maintenance": "Product maintenance",
+    "label.previous": "previous",
+    "label.next": "Next",
+    "label.new.client": "New client"
+}
